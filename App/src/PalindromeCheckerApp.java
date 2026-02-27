@@ -22,6 +22,25 @@ public class PalindromeCheckerApp {
         }
     }
     
+    // Use Case 3: Sentence Palindrome Tests (ignoring spaces and case)
+    public static void testSentencePalindromes() {
+        String[] sentenceTests = {
+            "A man a plan a canal Panama",
+            "Was it a car or a cat I saw",
+            "Madam Im Adam",
+            "race a car",
+            "hello world"
+        };
+        
+        System.out.println("\n\nUse Case 3: Sentence Palindrome Checks (ignoring spaces & case)");
+        System.out.println("------------------------------------------------------------------");
+        for (String sentence : sentenceTests) {
+            boolean result = isPalindrome(sentence);
+            String status = result ? "✓ PALINDROME" : "✗ NOT a palindrome";
+            System.out.println("  \"" + sentence + "\" → " + status);
+        }
+    }
+    
     public static void main(String[] args) {
         System.out.println("======== Palindrome Checker App ========");
         System.out.println("\nUse Case 1: User Input Palindrome Check");
@@ -38,6 +57,9 @@ public class PalindromeCheckerApp {
         
         // Call Use Case 2
         testHardcodedPalindromes();
+        
+        // Call Use Case 3
+        testSentencePalindromes();
         
         scanner.close();
     }
