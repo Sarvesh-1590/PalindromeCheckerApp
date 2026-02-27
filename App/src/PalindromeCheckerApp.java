@@ -1,25 +1,25 @@
 /**
  * ================================================================
- * MAIN CLASS - UseCase2PalindromeCheckerApp
+ * MAIN CLASS - UseCase3PalindromeCheckerApp
  * ================================================================
  *
- * Use Case 2: Hardcoded Palindrome Validation
+ * Use Case 3: Reverse String Based Palindrome Check
  *
  * Description:
- * This class demonstrates basic palindrome validation
- * using a hardcoded string value.
+ * This class checks whether a string is a palindrome
+ * by reversing the string and comparing it with
+ * the original value.
  *
  * At this stage, the application:
- * - Stores a predefined string
- * - Compares characters from both ends
- * - Determines whether the string is a palindrome
- * - Displays the result on the console
+ * - Iterates the string in reverse order
+ * - Builds a reversed version
+ * - Compares original and reversed strings
+ * - Displays the validation result
  *
- * This use case introduces fundamental comparison logic
- * before using advanced data structures.
+ * This introduces transformation-based validation.
  *
  * @author Developer
- * @version 2.0
+ * @version 3.0
  */
 
 import java.util.Scanner;
@@ -28,10 +28,10 @@ public class PalindromeCheckerApp {
     
     // Application Constants
     private static final String APP_NAME = "Palindrome Checker App";
-    private static final String APP_VERSION = "2.0";
+    private static final String APP_VERSION = "3.0";
     
     /**
-     * Application entry point for UC2.
+     * Application entry point for UC3.
      *
      * This is the first method executed by the JVM
      * when the program starts.
@@ -39,35 +39,65 @@ public class PalindromeCheckerApp {
      * @param args Command-line arguments
      */
     public static void main(String[] args) {
-        // Execute Test Case 2: Hardcoded Palindrome Validation
-        testCase2();
+        // Execute Test Case 3: Reverse String Based Palindrome Check
+        testCase3();
     }
     
     /**
-     * Test Case 2: Hardcoded Palindrome Validation
+     * Test Case 3: Reverse String Based Palindrome Check
      * 
-     * Tests palindrome validation using a hardcoded string.
-     * Demonstrates basic string comparison logic.
+     * Tests palindrome validation by reversing the string
+     * using a loop and comparing with the original.
      */
-    public static void testCase2() {
+    public static void testCase3() {
         // Hardcoded string literal to be checked
-        String hardcodedString = "madam";
+        String originalString = "racecar";
         
-        // Check if the string is a palindrome
-        boolean result = isPalindrome(hardcodedString);
+        // Reverse the string using a loop
+        String reversedString = reverseStringUsingLoop(originalString);
         
-        // Display the result on the console
+        // Compare original and reversed strings using equals()
+        boolean isPalindrome = originalString.equals(reversedString);
+        
+        // Display the validation result
         System.out.println("========================================");
-        System.out.println("  Use Case 2: Hardcoded Palindrome");
+        System.out.println("  Use Case 3: Reverse String Check");
         System.out.println("========================================");
-        System.out.println("\nString to check: \"" + hardcodedString + "\"");
+        System.out.println("\nOriginal String:  \"" + originalString + "\"");
+        System.out.println("Reversed String:  \"" + reversedString + "\"");
         
-        if (result) {
-            System.out.println("Result: ✓ IS a palindrome");
+        if (isPalindrome) {
+            System.out.println("\nResult: ✓ IS a palindrome");
         } else {
-            System.out.println("Result: ✗ NOT a palindrome");
+            System.out.println("\nResult: ✗ NOT a palindrome");
         }
         System.out.println();
+    }
+    
+    /**
+     * Reverses a string using a for loop.
+     *
+     * This method demonstrates:
+     * - Loop iteration through string characters
+     * - String concatenation using + operator
+     * - String immutability (each concatenation creates a new object)
+     *
+     * @param str the string to reverse
+     * @return the reversed string
+     */
+    public static String reverseStringUsingLoop(String str) {
+        // Initialize an empty string to build the reversed version
+        String reversed = "";
+        
+        // Iterate through the string in reverse order using a for loop
+        for (int i = str.length() - 1; i >= 0; i--) {
+            // Concatenate characters from end to start
+            // Note: String concatenation creates a new String object each time
+            // due to String immutability in Java
+            reversed = reversed + str.charAt(i);
+        }
+        
+        return reversed;
     }
     
     /**
@@ -91,6 +121,4 @@ public class PalindromeCheckerApp {
         // Compare original and reversed
         return cleaned.equals(reversed);
     }
-}
-
 }
