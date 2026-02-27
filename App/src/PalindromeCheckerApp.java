@@ -1,37 +1,37 @@
 /**
  * ================================================================
- * MAIN CLASS - UseCase4PalindromeCheckerApp
+ * MAIN CLASS - UseCase5PalindromeCheckerApp
  * ================================================================
  *
- * Use Case 4: Character Array Based Validation
+ * Use Case 5: Stack Based Palindrome Checker
  *
  * Description:
- * This class validates a palindrome by converting
- * the string into a character array and comparing
- * characters using the two-pointer technique.
+ * This class validates a palindrome using a Stack
+ * data structure which follows the LIFO principle.
  *
  * At this stage, the application:
- * - Converts string to char array
- * - Uses start and end pointers
- * - Compares characters efficiently
+ * - Pushes characters into a stack
+ * - Pops them in reverse order
+ * - Compares with original sequence
  * - Displays the result
  *
- * This reduces extra memory usage.
+ * This maps stack behavior to reversal logic.
  *
  * @author Developer
- * @version 4.0
+ * @version 5.0
  */
 
 import java.util.Scanner;
+import java.util.Stack;
 
 public class PalindromeCheckerApp {
     
     // Application Constants
     private static final String APP_NAME = "Palindrome Checker App";
-    private static final String APP_VERSION = "4.0";
+    private static final String APP_VERSION = "5.0";
     
     /**
-     * Application entry point for UC4.
+     * Application entry point for UC5.
      *
      * This is the first method executed by the JVM
      * when the program starts.
@@ -39,75 +39,74 @@ public class PalindromeCheckerApp {
      * @param args Command-line arguments
      */
     public static void main(String[] args) {
-        // Execute Test Case 4: Character Array Based Palindrome Check
-        testCase4();
+        // Execute Test Case 5: Stack Based Palindrome Check
+        testCase5();
     }
     
     /**
-     * Test Case 4: Character Array Based Palindrome Check
+     * Test Case 5: Stack Based Palindrome Check
      * 
-     * Tests palindrome validation using character array
-     * and two-pointer technique for efficient comparison.
+     * Tests palindrome validation using Stack data structure.
+     * Demonstrates LIFO principle for character reversal.
      */
-    public static void testCase4() {
-        // Hardcoded string literal to be checked
-        String testString = "level";
+    public static void testCase5() {
+        // Declare and initialize the input string
+        String input = "noon";
         
-        // Convert string to character array
-        char[] charArray = testString.toCharArray();
-        
-        // Check if palindrome using two-pointer approach
-        boolean isPalindrome = isPalindromeUsingTwoPointer(charArray);
+        // Check if palindrome using Stack
+        boolean isPalindrome = isPalindromeUsingStack(input);
         
         // Display the validation result
         System.out.println("========================================");
-        System.out.println("  Use Case 4: Character Array Check");
+        System.out.println("  Use Case 5: Stack Based Checker");
         System.out.println("========================================");
-        System.out.println("\nString to check: \"" + testString + "\"");
-        System.out.println("Character Array: " + java.util.Arrays.toString(charArray));
+        System.out.println("\nString to check: \"" + input + "\"");
         
         if (isPalindrome) {
-            System.out.println("\nResult: ✓ IS a palindrome");
+            System.out.println("Result: ✓ IS a palindrome");
         } else {
-            System.out.println("\nResult: ✗ NOT a palindrome");
+            System.out.println("Result: ✗ NOT a palindrome");
         }
         System.out.println();
     }
     
     /**
-     * Checks if a character array represents a palindrome
-     * using the two-pointer technique.
+     * Checks if a string is a palindrome using Stack data structure.
      *
      * This method demonstrates:
-     * - Character array indexing
-     * - Two-pointer technique for efficient comparison
-     * - Time complexity: O(n/2) - early termination
-     * - Space complexity: O(1) - no extra data structures
+     * - Stack creation and usage
+     * - Push operation: inserting characters
+     * - Pop operation: removing in LIFO order
+     * - Reversal logic through LIFO principle
      *
-     * @param charArray the character array to check
-     * @return true if the array is a palindrome, false otherwise
+     * @param str the string to check
+     * @return true if the string is a palindrome, false otherwise
      */
-    public static boolean isPalindromeUsingTwoPointer(char[] charArray) {
-        // Initialize two pointers: one at start, one at end
-        int start = 0;
-        int end = charArray.length - 1;
+    public static boolean isPalindromeUsingStack(String str) {
+        // Create a Stack to store characters
+        Stack<Character> stack = new Stack<>();
         
-        // Use two-pointer technique to compare characters
-        // Continue until pointers meet in the middle
-        while (start < end) {
-            // Compare characters at start and end positions
-            // If they don't match, it's not a palindrome
-            if (charArray[start] != charArray[end]) {
-                return false;
-            }
-            
-            // Move pointers towards the center
-            start++;      // Move start pointer forward
-            end--;        // Move end pointer backward
+        // Push each character of the string into the stack
+        for (char c : str.toCharArray()) {
+            stack.push(c);
         }
         
-        // If no mismatch found, it's a palindrome
-        return true;
+        // Assume palindrome initially
+        boolean isPalindrome = true;
+        
+        // Pop characters from stack and compare with original order
+        for (char c : str.toCharArray()) {
+            // Pop character from stack (removes from top - LIFO)
+            char poppedChar = stack.pop();
+            
+            // If popped character doesn't match current position, not a palindrome
+            if (c != poppedChar) {
+                isPalindrome = false;
+                break;
+            }
+        }
+        
+        return isPalindrome;
     }
     
     /**
