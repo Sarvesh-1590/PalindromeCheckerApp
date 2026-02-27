@@ -31,7 +31,7 @@ import java.util.Queue;
 import java.util.LinkedList;
 import java.util.Deque;
 
-public class PalindromeCheckerApp {
+public class UseCase7PalindromeCheckerApp {
     
     // Application Constants
     private static final String APP_NAME = "Palindrome Checker App";
