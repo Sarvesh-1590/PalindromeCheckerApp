@@ -9,6 +9,19 @@ public class PalindromeCheckerApp {
         return cleaned.equals(reversed);
     }
     
+    // Use Case 2: Hardcoded Palindrome Tests
+    public static void testHardcodedPalindromes() {
+        String[] testCases = {"racecar", "madam", "level", "hello", "A", "noon"};
+        
+        System.out.println("\n\nUse Case 2: Hardcoded Palindrome Checks");
+        System.out.println("----------------------------------------");
+        for (String test : testCases) {
+            boolean result = isPalindrome(test);
+            String status = result ? "✓ PALINDROME" : "✗ NOT a palindrome";
+            System.out.println("  \"" + test + "\" → " + status);
+        }
+    }
+    
     public static void main(String[] args) {
         System.out.println("======== Palindrome Checker App ========");
         System.out.println("\nUse Case 1: User Input Palindrome Check");
@@ -22,6 +35,9 @@ public class PalindromeCheckerApp {
         } else {
             System.out.println("✗ '" + userInput + "' is NOT a palindrome.");
         }
+        
+        // Call Use Case 2
+        testHardcodedPalindromes();
         
         scanner.close();
     }
